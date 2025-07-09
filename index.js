@@ -263,4 +263,4 @@ console.log( "Total Distance:" , result.totalDistance , "km" ) ;
 
 // Total Distance:  5000 km
 
-// Since we have only filled a part of the distances, the output will vary based on the distances provided.
+// We have only filled a part of the distances, the output will vary based on the distances provided.
