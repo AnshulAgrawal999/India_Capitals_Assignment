@@ -11,7 +11,9 @@ const n = cities.length ;
 
 const distances = Array.from( { length: n } , () => new Array( n ).fill( 0 ) ) ;
 
-// Sample distances (in km) - Replace with actual road distances
+// With 28 cities, there are 28*27/2 = 378 unique pairs (since the distance from A to B equals B to A).
+
+// Sample road distances ( in km ) 
 distances[0][1] = 2288; distances[1][0] = 2288; // Amaravati – Itanagar 
 distances[1][2] = 333;  distances[2][1] = 333;  // Amaravati - Dispur
 distances[0][3] = 1500; distances[3][0] = 1500; // Amaravati - Patna
@@ -188,39 +190,65 @@ distances[7][12] = 700; distances[12][7] = 700; // Chandigarh - Bhopal
 distances[7][13] = 400; distances[13][7] = 400; // Chandigarh - Mumbai
 distances[7][14] = 1500; distances[14][7] = 1500; // Chandigarh - Imphal
 
-// I have added half of the distances for the sake of brevity.
 
-function nearestNeighbor(start, distances, cities) {
-  const n = cities.length;
-  const tour = [start];
-  const visited = new Set([start]);
-  let totalDistance = 0;
+// I have added half of the distances similarly one can continue to fill the rest of the distances
 
-  while (tour.length < n) {
-    let last = tour[tour.length - 1];
-    let nearest = -1;
-    let minDistance = Infinity;
 
-    for (let i = 0; i < n; i++) {
-      if (!visited.has(i) && distances[last][i] < minDistance) {
-        minDistance = distances[last][i];
-        nearest = i;
+// The Nearest Neighbor algorithm is employs a pragmatic method for solving the Traveling Salesman Problem (TSP).
+// It doesn’t always find the shortest possible tour. The result is a reasonable approximation.
+
+// It starts at a given city and repeatedly visits the nearest unvisited city until all cities are visited.
+// Finally, it returns to the starting city to complete the tour.
+
+// The function returns the tour and the total distance of the tour.
+// The time complexity is O(n^2) as it checks each city for the nearest neighbor in each iteration.
+// The space complexity is O(n) for storing the tour and visited cities.
+
+
+function nearestNeighbor( start , distances , cities ) 
+{
+  const tour = [ start ] ;
+
+  const visited = new Set( [ start ] ) ;
+
+  let totalDistance = 0 ;
+
+  while( tour.length < n ) 
+  {
+    let last = tour[ tour.length - 1 ] ;
+
+    let nearest = -1 ;
+
+    let minDistance = Infinity ;
+
+    for( let i = 0 ; i < n ; i++ ) 
+    {
+      if( !visited.has( i ) && distances[ last ][ i ] < minDistance ) 
+      {
+        minDistance = distances[ last ][ i ] ;
+
+        nearest = i ;
       }
     }
 
-    tour.push(nearest);
-    visited.add(nearest);
-    totalDistance += minDistance;
+    tour.push( nearest ) ;
+
+    visited.add( nearest ) ;
+
+    totalDistance += minDistance ;
   }
 
   // Return to the starting city
-  totalDistance += distances[tour[n - 1]][start];
-  tour.push(start);
+  totalDistance += distances[ tour[n - 1] ][ start ] ;
 
-  return { tour, totalDistance };
+  tour.push( start ) ;
+
+  return { tour, totalDistance } ;
 }
 
-// Run the algorithm starting from Amaravati (index 0)
-const result = nearestNeighbor(0, distances, cities);
-console.log("Tour:", result.tour.map(index => cities[index]).join(" -> "));
-console.log("Total Distance:", result.totalDistance, "km");
+// starting from Amaravati (index 0)
+const result = nearestNeighbor( 0 , distances , cities ) ;
+
+console.log( "Tour map:", result.tour.map( index => cities[ index ] ).join( " -> " ) ) ;
+
+console.log( "Total Distance:" , result.totalDistance , "km" ) ;
