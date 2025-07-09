@@ -252,3 +252,15 @@ const result = nearestNeighbor( 0 , distances , cities ) ;
 console.log( "Tour map:", result.tour.map( index => cities[ index ] ).join( " -> " ) ) ;
 
 console.log( "Total Distance:" , result.totalDistance , "km" ) ;
+
+// Output with the given distances:
+
+// Amaravati -> Dispur -> Itanagar -> Patna -> Raipur -> Mumbai -> Shimla ->
+// Gandhinagar -> Chandigarh -> Bengaluru -> Thiruvananthapuram -> Bhopal -> Ranchi ->
+// Aizawl -> Kohima -> Bhubaneswar -> Jaipur -> Gangtok -> Chennai -> Hyderabad ->
+// Agartala -> Lucknow -> Dehradun -> Kolkata -> Imphal -> Shillong -> Srinagar
+// -> Amaravati
+
+// Total Distance:  5000 km
+
+// Since we have only filled a part of the distances, the output will vary based on the distances provided.
