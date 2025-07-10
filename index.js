@@ -407,7 +407,7 @@ distances[26][27] = 1600; distances[27][26] = 1600; // Kolkata - Srinagar
 // The space complexity is O(n) for storing the tour and visited cities.
 
 
-function nearestNeighbor( start , distances , cities ) 
+function nearestNeighbor( start , distances ) 
 {
   const tour = [ start ] ;
 
@@ -449,7 +449,7 @@ function nearestNeighbor( start , distances , cities )
 }
 
 // starting from Amaravati (index 0)
-const result = nearestNeighbor( 0 , distances , cities ) ;
+const result = nearestNeighbor( 0 , distances ) ;
 
 console.log( "Tour map:", result.tour.map( index => cities[ index ] ).join( " -> " ) ) ;
 
