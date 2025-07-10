@@ -11,7 +11,10 @@ const n = cities.length ;
 
 const distances = Array.from( { length: n } , () => new Array( n ).fill( 0 ) ) ;
 
-// Sample road distances ( in km ) 
+// Number of cities = 27 + 26 + 24 + 23 + 22 + 21 + 20 + 19 + 18 + 17 + 16 + 15 + 14 + 13 + 12 + 11 + 10 + 9 + 8 + 7 + 6 + 5 + 4 + 3 + 2 + 1 = 28*27/2 = 378
+
+// Approx road distances ( in km ) 
+
 distances[0][1] = 2288; distances[1][0] = 2288; // Amaravati – Itanagar 
 distances[1][2] = 333;  distances[2][1] = 333;  // Amaravati - Dispur
 distances[0][3] = 1500; distances[3][0] = 1500; // Amaravati - Patna
